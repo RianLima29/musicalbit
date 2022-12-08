@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SCREEN_MOBILE } from "../../config";
+import { SCREEN_MOBILE, spacing } from "../../config";
 
 export const MainContainer = styled.div`
 
@@ -23,6 +23,9 @@ export const ContentContainer = styled.div`
 
     width: 100%;
     height: 100%;
+    padding: ${spacing(2)};
+    display: flex;
+    justify-content: center;
 
     @media (max-width: ${SCREEN_MOBILE}){
         width: 100vw;

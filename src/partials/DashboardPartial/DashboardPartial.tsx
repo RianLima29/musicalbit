@@ -5,7 +5,7 @@ import * as C from './styles'
  
 
 interface Props {
-    children ?: JSX.Element | JSX.Element[] | string
+    children ?: JSX.Element | JSX.Element[] | string | boolean
 }
 
 export default function index(props: Props) { 

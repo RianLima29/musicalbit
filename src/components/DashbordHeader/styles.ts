@@ -27,6 +27,10 @@ export const Wrapper = styled.div<Wrapper>`
 export const WelcomeTitle = styled.p`
   align-self: flex-start;
   font-weight: 500;
+
+  @media (max-width: ${SCREEN_MOBILE}){
+    display: none;
+  }
 `;
 export const WelcomeBody = styled.p`
   font-weight: 100;

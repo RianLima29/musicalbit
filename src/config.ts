@@ -9,6 +9,7 @@ export const COLOR_ELEVATION_07 = "#CFCFCF";
 export const COLOR_ELEVATION_08 = "#E1E1E1";
 export const COLOR_ELEVATION_09 = "#F7F7F7";
 export const COLOR_TEXT = "white";
+export const COLOR_ERROR = "#D32F2F";
 export const COLOR_PRIMARY_DARK = "#FFA000";
 export const COLOR_PRIMARY_LIGHT = "FFECB3";
 export const COLOR_PRIMARY = "#FFC107";
