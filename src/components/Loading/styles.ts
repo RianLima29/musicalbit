@@ -10,6 +10,8 @@ export const Loading = styled(AiOutlineLoading3Quarters)`
     animation-duration: .9s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
+    justify-self: center;
+    align-self: center;
     
     @keyframes loading{
         from{

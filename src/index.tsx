@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import {createTheme, ThemeProvider} from '@mui/material'
 import { COLOR_ACCENT, COLOR_PRIMARY, COLOR_PRIMARY_DARK, COLOR_PRIMARY_LIGHT } from "./config";
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -33,6 +35,7 @@ root.render(
         <Provider store={store}>
           <App />
           <GlobalStyle />
+          <ToastContainer theme="dark" position="bottom-right"/>
         </Provider>
       </ThemeProvider>
     </BrowserRouter>

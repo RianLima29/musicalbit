@@ -10,4 +10,5 @@ export type Product = {
     mainPhoto: string,
     secondaryPhotos?: string[] 
     categories:  string
+    path?: string
 }

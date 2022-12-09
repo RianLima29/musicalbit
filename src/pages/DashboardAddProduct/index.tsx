@@ -1,7 +1,7 @@
 import React from "react";
 import DashboardPartial from "../../partials/DashboardPartial/DashboardPartial";
 import * as C from "./styles";
-import { TextField, Input, Button } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -9,11 +9,11 @@ import { AddProductForm } from "../../types/AddProductForm";
 import { useUploadFile } from "react-firebase-hooks/storage";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { storage } from "../../firebase";
-import { Product } from "../../types/product";
 import { useAddProductMutation } from "../../redux/api/apiSlice";
 import { useNavigate } from "react-router-dom";
 import { spacing } from "../../config";
 import Loading from "../../components/Loading";
+import {toast} from 'react-toastify'
 
 const stepTwoSchema = yup.object().shape({
   price: yup.string().required("O produto precisa de um preço").matches(/[\d+][\.]*[\d+]*,[\d+]/,{message: "Exemplo: 99,99 ou 99.99,99"}),
@@ -66,12 +66,11 @@ export default function DashboardAddProduct() {
   const navigate = useNavigate();
   const [productName, setProductName] = React.useState<string>("");
   const [addProduct] = useAddProductMutation();
-  const [uploadFile, uploading, snapshot, error] = useUploadFile();
+  const [uploadFile] = useUploadFile();
   const [currentStep, setCurrentStep] = React.useState<1 | 2>(1);
   const {
     handleSubmit: stepTwoHandleSubmit,
     register: stepTwoRegister,
-    reset,
     formState: { errors: stepTwoErrors },
   } = useForm<AddProductForm>({
     resolver: yupResolver(stepTwoSchema),
@@ -159,6 +158,7 @@ export default function DashboardAddProduct() {
       mainPhoto: MainPhotoUrl,
       secondaryPhotos: secondaryPhotoUrls,
     }).then(() => {
+      toast.success('Produto adicionado')
       navigate("/dashboard/");
     });
   };
