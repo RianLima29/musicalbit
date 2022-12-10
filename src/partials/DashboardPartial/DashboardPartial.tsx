@@ -8,7 +8,7 @@ interface Props {
     children ?: JSX.Element | JSX.Element[] | string | boolean
 }
 
-export default function index(props: Props) { 
+export default function DashboardPartial(props: Props) { 
     return ( 
         <C.MainContainer>
             <DashboardSidebar/>

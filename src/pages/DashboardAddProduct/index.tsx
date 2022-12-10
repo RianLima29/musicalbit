@@ -5,7 +5,7 @@ import { TextField, Button } from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { AddProductForm } from "../../types/AddProductForm";
+import { AddProductForm } from "../../types/productForm";
 import { useUploadFile } from "react-firebase-hooks/storage";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { storage } from "../../firebase";
@@ -159,7 +159,7 @@ export default function DashboardAddProduct() {
       secondaryPhotos: secondaryPhotoUrls,
     }).then(() => {
       toast.success('Produto adicionado')
-      navigate("/dashboard/");
+      navigate("/dashboard/stock");
     });
   };
 
@@ -248,7 +248,6 @@ export default function DashboardAddProduct() {
             </C.Wrapper>
             <C.ButtonWrapper>
               <Button variant="contained" type="submit">
-                {" "}
                 Enviar e seguir
               </Button>
             </C.ButtonWrapper>

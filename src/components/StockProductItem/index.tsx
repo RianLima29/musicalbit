@@ -7,6 +7,7 @@ import {useDeleteProductMutation} from '../../redux/api/apiSlice'
 import {deleteObject, ref} from 'firebase/storage'
 import { storage } from "../../firebase";
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   product: Product;
@@ -14,6 +15,7 @@ interface Props {
 
 export default function StockProductItem(props: Props) {
     const [deleteProduct] = useDeleteProductMutation()
+    const navigate = useNavigate()
 
     const handleDeleteIconClick = ()=>{
         if(props.product.path){
@@ -23,6 +25,9 @@ export default function StockProductItem(props: Props) {
                 toast.error(`O item não pôde ser deletado`)
             })
         }
+    }
+    const handleEditIconClick = ()=>{
+      navigate(`/dashboard/stock/${props.product.path?.split('/').slice(-1)}`)
     }
   return (
     <C.Container>
@@ -35,7 +40,7 @@ export default function StockProductItem(props: Props) {
         </C.Wrapper>
       </C.InfoContainer>
       <C.ActionsWrapper>
-        <Tooltip title="Editar">
+        <Tooltip onClick={handleEditIconClick} title="Editar">
           <IconButton>
             <Edit color="primary"/>
           </IconButton>

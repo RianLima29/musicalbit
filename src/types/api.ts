@@ -1,8 +1,8 @@
-export interface ApiData<T> {
+export interface ApiDataDocuments<T> {
   documents: ApiDocument<T>[];
 }
 
-interface ApiDocument<I> {
+export interface ApiDocument<I> {
   name: string;
   fields: I;
   createTime: string;
