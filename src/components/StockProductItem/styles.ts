@@ -21,11 +21,14 @@ export const Container = styled.div`
 `;
 
 export const ProductPreview = styled.img`
-  min-width: ${(p) => p.height};
+  width: 76px;
   max-height: ${(p) => p.height};
   border: 3px solid ${COLOR_ELEVATION_03};
   border-radius: ${radius(1)};
   min-height: 100%;
+  max-width: 76px;
+  object-fit: cover;
+  object-position: center top;
 `;
 
 export const Name = styled.p`
@@ -53,13 +56,10 @@ export const Wrapper = styled.div`
 `;
 
 export const InfoContainer = styled.div`
-
-   width: fit-content;
-   height: 100%;
-   display: flex;
-
-
-`
+  width: fit-content;
+  height: 100%;
+  display: flex;
+`;
 
 export const ActionsWrapper = styled.div`
   display: flex;

@@ -5,8 +5,10 @@ import DashboardStock from '../pages/DashboardStock'
 import DashboardAddProduct from '../pages/DashboardAddProduct'
 import DashboardOrders from '../pages/DashboardOrders'
 import DashboardEditProduct from '../pages/DashboardEditProduct'
+import DashboardLogin from '../pages/DashboardLogin/index';
 
 export default function AdminRoutes() {
+
   
   return (
     <Routes>

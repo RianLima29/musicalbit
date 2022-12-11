@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ApiDataDocuments, ApiDocument, ProductFields } from "../../types/api";
+import { ApiDataDocuments, ApiDocument, ProductFields, UserFields } from "../../types/api";
+import { UserRole } from "../../types/login";
 import { Product } from "../../types/product";
 
 export const api = createApi({
@@ -169,11 +170,19 @@ export const api = createApi({
         },
       }),
       invalidatesTags: ["product"],
-    })
+    }),
+    getUserRole: build.mutation<UserRole, string>({
+      query: (uid) => (`projects/musicalbit-d9b36/databases/(default)/documents/users/${uid}`),
+
+      transformResponse: (response: ApiDocument<UserFields>) => {
+        return response.fields.role.stringValue
+      }
+  }),
   }),
 });
 
 export const {
+  useGetUserRoleMutation,
   useAddProductMutation,
   useGetProductsQuery,
   useDeleteProductMutation,

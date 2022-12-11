@@ -1,3 +1,5 @@
+import { UserRole } from "./login";
+
 export interface ApiDataDocuments<T> {
   documents: ApiDocument<T>[];
 }
@@ -7,6 +9,12 @@ export interface ApiDocument<I> {
   fields: I;
   createTime: string;
   updateTime: string;
+}
+
+export interface UserFields {
+  role: {
+    stringValue: UserRole
+  }
 }
 
 export interface ProductFields {
