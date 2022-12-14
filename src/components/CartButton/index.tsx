@@ -13,9 +13,9 @@ export default function CartButton() {
       <C.CartIcon />
       <C.TotalPrice>
         {cartData.items.reduce(
-          (prev, curr) => prev + parseInt(curr.price) * curr.quantity,
+          (prev, curr) => prev + parseFloat(curr.price) * curr.quantity,
           0
-        )}
+        ).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
       </C.TotalPrice>
       <C.QuantityBadge>
         {cartData.items.reduce((prev, curr) => prev + curr.quantity, 0)}

@@ -31,7 +31,7 @@ export default function Cart() {
         <C.MainImage photoUrl={item.mainPhoto} />
         <C.Wrapper>
           <C.ItemTitle>{item.name}</C.ItemTitle>
-          <C.ItemPrice>{parseFloat(item.price )* item.quantity}</C.ItemPrice>
+          <C.ItemPrice>{(parseFloat(item.price )* item.quantity).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</C.ItemPrice>
         </C.Wrapper>
       </C.RowWrapper>
 
@@ -57,7 +57,7 @@ export default function Cart() {
         <C.Container>
           <>
             <C.LeftSide>
-              <C.CartTitle>Carrinho</C.CartTitle>
+              <C.CartTitle>Seu carrinho</C.CartTitle>
               {cartData.items.length <= 0 && (
                 <C.CartWarning>Não há itens no carrinho!</C.CartWarning>
               )}

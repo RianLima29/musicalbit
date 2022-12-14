@@ -17,13 +17,18 @@ export default function ProductDetails() {
   const [productCount, setProductCount] = React.useState<number>(1);
   const cartData = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
-console.log(cartData.items)
+
+  console.log(
+    data?.price,
+    data?.price.replaceAll(".", "").replaceAll(",", ".") ?? ""
+  );
 
   const addProductToCart = () => {
-    if(data){
+    if (data) {
       dispatch(
         addProduct({
           ...data,
+          price: data?.price.replaceAll(".", "").replaceAll(",", "."),
           quantity: productCount,
         })
       );
@@ -50,7 +55,7 @@ console.log(cartData.items)
                     sx={{ borderRadius: radius(1000), margin: spacing(1) }}
                     variant="contained"
                     startIcon={<ShoppingCartOutlinedIcon />}
-                    onClick={()=>addProductToCart()}
+                    onClick={() => addProductToCart()}
                   >
                     ADICIONAR AO CARRINHO
                   </Button>

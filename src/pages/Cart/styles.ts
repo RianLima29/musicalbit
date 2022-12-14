@@ -107,9 +107,6 @@ export const ItemTitle = styled.h3`
 `;
 
 export const ItemPrice = styled.p`
-    &::before{
-        content: 'R$ ';
-    }
   margin-left: ${spacing(2)};
   margin-top: ${spacing(1)};
   font-size: 13px;
@@ -130,10 +127,12 @@ export const Minus = styled(AiOutlineMinus)`
   color: rgba(100, 100, 100, 0.5);
 `;
 
-export const CartTitle = styled.h5``;
+export const CartTitle = styled.h3`
+  font-weight: 400;
+`;
 
 export const CartWarning = styled.p`
-margin-top: ${spacing(5)};
+  margin-top: ${spacing(5)};
   text-align: center;
 `;
 

@@ -33,9 +33,6 @@ export const TotalPrice = styled.p`
   color: ${COLOR_PRIMARY_DARK};
   font-weight: 600;
 
-  &::before {
-    content: " R$";
-  }
 `;
 
 export const CartIcon = styled(ShoppingCartOutlinedIcon)`
