@@ -42,12 +42,13 @@ export const LeftContainer = styled.div`
 
 export const RightContainer = styled.div`
 
+    min-height: 50%;
     height: fit-content;
     width: 50%;
     display: flex;
     flex-direction: column;
     padding: ${spacing(2)};
-
+    
     @media (max-width: ${SCREEN_MOBILE}){
         width: 100%;
     };

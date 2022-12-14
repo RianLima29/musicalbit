@@ -76,7 +76,7 @@ export default function DashboardLogin() {
                 {...register("email")}
                 helperText={errors?.email?.message}
                 error={!!errors?.password || !!authError}
-                sx={{ marginTop: spacing(2) }}
+                sx={{ marginTop: spacing(2)}}
                 variant="outlined"
                 label="E-mail"
               />

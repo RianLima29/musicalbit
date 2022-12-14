@@ -34,7 +34,7 @@ export const api = createApi({
       },
       providesTags: ['product']
     }),
-    getProducts: build.query<Product[] | void, void>({
+    getProducts: build.query<Product[] | null, void>({
       query: () =>
         "projects/musicalbit-d9b36/databases/(default)/documents/products",
       transformResponse: (response: ApiDataDocuments<ProductFields>) => {
@@ -60,7 +60,11 @@ export const api = createApi({
           });
         });
 
-        if (data.length > 0) return data;
+        if (data.length > 0){
+          return data;
+        }
+        
+        return null
       },
       providesTags: ["product"],
     }),
