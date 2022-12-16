@@ -3,7 +3,15 @@ import * as C from "./styles";
 import DashboardPartial from "../../partials/DashboardPartial/DashboardPartial";
 import { spacing } from "../../config";
 import { useForm } from "react-hook-form";
-import { TextField, Button } from "@mui/material";
+import {
+  TextField,
+  Button,
+  InputLabel,
+  Select,
+  FormHelperText,
+  FormControl,
+  MenuItem,
+} from "@mui/material";
 import { Product } from "../../types/product";
 import {
   useGetProductQuery,
@@ -97,7 +105,7 @@ export default function DashboardEditProduct() {
   React.useEffect(() => {
     if (disabledButton && secondaryPhotoUrls && mainPhotoUrl) {
       setDisabledButton(false);
-      toast.dismiss()
+      toast.dismiss();
     }
   }, [secondaryPhotoUrls, setSecondaryPhotoUrls]);
 
@@ -184,7 +192,7 @@ export default function DashboardEditProduct() {
     let mainPhoto = watch("mainPhoto");
     let secondaryPhotos = watch("secondaryPhotos");
     if (secondaryPhotos.length > 0 && mainPhoto.length > 0) {
-        toast.loading('Enviando fotos, aguarde para prosseguir')
+      toast.loading("Enviando fotos, aguarde para prosseguir");
       Promise.all([deleteMainPhotos(), deleteSecondaryPhotos()]).then(() => {
         handleMainPhotoChange(watch("mainPhoto"));
         handleSecondaryPhotosChange(watch("secondaryPhotos"));
@@ -255,15 +263,25 @@ export default function DashboardEditProduct() {
                 helperText={errors.name?.message}
                 defaultValue={apiData.name}
               />
-              <TextField
-                sx={{ margin: spacing(1) }}
-                {...register("categories")}
-                variant="outlined"
-                label="Categoria"
-                error={!!errors.categories}
-                helperText={errors.categories?.message}
-                defaultValue={apiData.categories}
-              />
+              <FormControl sx={{ margin: spacing(1) }}>
+                <InputLabel id="cat-label">Categoria</InputLabel>
+                <Select
+                  labelId="cat-label"
+                  label="Categoria"
+                  error={!!errors.categories}
+                  {...register("categories")}
+                  defaultValue={apiData.categories}
+                >
+                  <MenuItem value="Violões">Violões</MenuItem>
+                  <MenuItem value="Guitarras">Guitarras</MenuItem>
+                  <MenuItem value="Percussão">Percussão</MenuItem>
+                </Select>
+                {errors.categories && (
+                  <FormHelperText error={true}>
+                    {errors.categories.message}
+                  </FormHelperText>
+                )}
+              </FormControl>
               <TextField
                 sx={{ margin: spacing(1) }}
                 {...register("description")}

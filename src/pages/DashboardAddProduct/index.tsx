@@ -1,7 +1,15 @@
 import React from "react";
 import DashboardPartial from "../../partials/DashboardPartial/DashboardPartial";
 import * as C from "./styles";
-import { TextField, Button } from "@mui/material";
+import {
+  TextField,
+  Button,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  FormHelperText,
+} from "@mui/material";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -13,10 +21,16 @@ import { useAddProductMutation } from "../../redux/api/apiSlice";
 import { useNavigate } from "react-router-dom";
 import { spacing } from "../../config";
 import Loading from "../../components/Loading";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
+import { registerVersion } from "firebase/app";
 
 const stepTwoSchema = yup.object().shape({
-  price: yup.string().required("O produto precisa de um preço").matches(/[\d+][\.]*[\d+]*,[\d+]/,{message: "Exemplo: 99,99 ou 99.99,99"}),
+  price: yup
+    .string()
+    .required("O produto precisa de um preço")
+    .matches(/[\d+][\.]*[\d+]*,[\d+]/, {
+      message: "Exemplo: 99,99 ou 99.99,99",
+    }),
   description: yup.string().required("O produto precisa de uma descrição"),
   inStock: yup
     .number()
@@ -259,14 +273,21 @@ export default function DashboardAddProduct() {
           >
             <C.CurrentStepText>Etapa {currentStep} de 2</C.CurrentStepText>
             <C.Wrapper>
-              <TextField
-                sx={{ margin: spacing(1) }}
-                {...stepTwoRegister("categories")}
-                variant="outlined"
-                label="Categoria"
-                error={!!stepTwoErrors.categories}
-                helperText={stepTwoErrors.categories?.message}
-              />
+            <FormControl sx={{width: '230px', margin: spacing(1)}}>
+        <InputLabel id="cat-label">Categoria</InputLabel>
+        <Select
+          labelId="cat-label"
+          label="Age"
+          error={!!stepTwoErrors.categories}
+          {...stepTwoRegister('categories')}
+        >
+          <MenuItem value="Violões">Violões</MenuItem>
+          <MenuItem value="Guitarras">Guitarras</MenuItem>
+          <MenuItem value="Percussão">Percussão</MenuItem>
+        </Select>
+        {stepTwoErrors.categories && <FormHelperText error={true}>{stepTwoErrors.categories.message}</FormHelperText>}
+      </FormControl>
+
               <TextField
                 sx={{ margin: spacing(1) }}
                 {...stepTwoRegister("description")}

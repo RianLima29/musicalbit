@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {
   COLOR_ELEVATION_01,
+  COLOR_ELEVATION_02,
   COLOR_PRIMARY_DARK,
   radius,
   SCREEN_MOBILE,
@@ -39,13 +40,13 @@ export const Container = styled.div`
 export const LeftSide = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
   min-width: 350px;
   width: 60%;
   min-height: 400px;
   height: fit-content;
   flex: 1;
-  padding-top: ${spacing(10)};
 
   @media (max-width: ${SCREEN_MOBILE}) {
     height: fit-content;
@@ -95,13 +96,44 @@ interface MainImage {
 }
 
 export const MainImage = styled.div<MainImage>`
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background-image: url(${(p) => p.photoUrl});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 `;
+
+export const SecondaryImagesContainer = styled.div`
+
+  width: 250px;
+  height: fit-content;
+  overflow: auto;
+  padding: ${spacing(1)};
+  padding-left: ${spacing(2)};
+  display: flex;
+  align-items: center;
+  border: 1px solid ${COLOR_ELEVATION_02};
+  cursor: pointer;
+`
+
+interface SecondaryImage {
+  photoUrl: string;
+}
+
+export const SecondaryImage = styled.div<SecondaryImage>`
+
+  height: 90px;
+  min-width: 100px;
+  margin-right: ${spacing(1)};
+  background-image: url(${(p) => p.photoUrl});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+`
+
 
 export const Price = styled.h5`
   font-size: 18px;

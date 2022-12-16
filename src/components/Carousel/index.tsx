@@ -1,9 +1,10 @@
 import React from 'react' 
+import Loading from '../Loading'
 import * as C from './styles' 
 
 interface Props {
     contentWidth: string
-    children: JSX.Element | JSX.Element[] | undefined
+    children: JSX.Element | JSX.Element[] | undefined | boolean
 }
  
 export default function Carousel(props: Props) { 
@@ -23,6 +24,7 @@ export default function Carousel(props: Props) {
             <C.ArrowLeft onClick={handleArrowLeftClick}/>
                 <C.ContentContainer ref={contentContainerRef} width={props.contentWidth}>
                     {props.children}
+                    {!props.children && <Loading/>}
                 </C.ContentContainer>
             <C.ArrowRight onClick={handleArrowRightClick}/>
         </C.Container>

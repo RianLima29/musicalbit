@@ -151,3 +151,8 @@ export const DeleteButton = styled(IoCloseOutline)`
   font-size: 36px;
   cursor: pointer;
 `;
+
+export const TotalText = styled.h3`
+  margin-top: ${spacing(3)};
+  font-weight: 300;
+`;

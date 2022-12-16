@@ -16,12 +16,25 @@ export default function ProductDetails() {
   const { data, isLoading, isError } = useGetProductQuery(params.id ?? "");
   const [productCount, setProductCount] = React.useState<number>(1);
   const cartData = useSelector((state: RootState) => state.cart);
+  const [mainPhoto, setMainPhoto] = React.useState<string>('')
   const dispatch = useDispatch();
 
   console.log(
     data?.price,
     data?.price.replaceAll(".", "").replaceAll(",", ".") ?? ""
   );
+
+  React.useEffect(()=>{
+    if(data?.mainPhoto){
+      setMainPhoto(data.mainPhoto)
+    }
+  },[data])
+
+  let secondaryImages = data?.secondaryPhotos?.map((item, index) => (
+    <C.SecondaryImage key={index + 1} onClick={()=>setMainPhoto(item)} photoUrl={item} />
+  ));
+
+  secondaryImages?.unshift(<C.SecondaryImage key={1} onClick={()=>setMainPhoto(data?.mainPhoto ?? '')} photoUrl={data?.mainPhoto ?? ''}/>)
 
   const addProductToCart = () => {
     if (data) {
@@ -43,7 +56,12 @@ export default function ProductDetails() {
           {data && (
             <>
               <C.LeftSide>
-                <C.MainImage photoUrl={data.mainPhoto} />
+                <C.MainImage photoUrl={mainPhoto} />
+                {secondaryImages && (
+                  <C.SecondaryImagesContainer>
+                    {secondaryImages}
+                  </C.SecondaryImagesContainer>
+                )}
               </C.LeftSide>
               <C.RightSide>
                 <C.ProductTitle>{data.name}</C.ProductTitle>
